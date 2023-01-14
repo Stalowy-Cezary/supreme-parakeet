@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <h1>Articles</h1>
+<ul>
+{% for post in object_list %}
+    <li>{{ post.title }}</li>
+    <img src="{{ post.image.url }}"
+     width="20%"/>
+{% empty %}
+    <li>No Posts yet.</li>
+{% endfor %}
+</ul>
+
+</body>
+</html>
