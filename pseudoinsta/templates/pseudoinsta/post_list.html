@@ -4,33 +4,45 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'pseudoinsta/post_list.css' %}">
 
-<div>
- <h1>Articles</h1>
-</div>
-<ul>
-    <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
-        {% for post in object_list %}
-        <div class="grid-item">
-            <span>{{ post.title }}</span>
-            <img src="{{ post.image.url }}"/>
-        </div>
-        {% empty %}
-            No Posts yet.
+
+
+<div class="grid" data-masonry='{ 
+    "itemSelector": ".grid-item",
+    "columnWidth": 1
+}'>
+    {% for post in object_list %}
+    <div class="grid-item">
+        <span class="image-title">{{ post.title }}</span>
+        <img src="{{ post.image.url }}"/>
+        {% for comments in object_list %}
+            <div class="comment-container">
+                
+            </div>
         {% endfor %}
-    </div>  
-</ul>
+        {% if user.is_authenticated %}
+        <div class="add-conment-container">
+            <input class="comment-input" placeholder="Dodaj komentarz">
+            <button class="comment-btn">
+                +
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    {% empty %}
+        No Posts yet.
+    {% endfor %}
+</div>  
 
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js">
-
-var elem = document.querySelector('.grid');
-var msnry = new Masonry( elem, {  
-    itemSelector: '.grid-item',
-    columnWidth: auto
+var $grid = $('.grid').masonry({
+  columnWidth: 80
 });
-gridElement.appendChild( elem );
-msnry.appended( post.image.url );
-msnry.layout();
-
+// change size of item by toggling gigante class
+$grid.on( 'click', '.grid-item', function() {
+  $(this).toggleClass('gigante');
+  // trigger layout after item size changes
+  $grid.masonry('layout');
+});
 </script>
 
 {% endblock%}
