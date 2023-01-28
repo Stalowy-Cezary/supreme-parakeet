@@ -4,8 +4,6 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'pseudoinsta/post_list.css' %}">
 
-
-
 <div class="grid" data-masonry='{ 
     "itemSelector": ".grid-item",
     "columnWidth": 1
@@ -13,20 +11,7 @@
     {% for post in object_list %}
     <div class="grid-item">
         <span class="image-title">{{ post.title }}</span>
-        <img src="{{ post.image.url }}"/>
-        {% for comments in object_list %}
-            <div class="comment-container">
-                
-            </div>
-        {% endfor %}
-        {% if user.is_authenticated %}
-        <div class="add-conment-container">
-            <input class="comment-input" placeholder="Dodaj komentarz">
-            <button class="comment-btn">
-                +
-            </button>
-        </div>
-        {% endif %}
+        <a href="{% url 'post-detail' post.id %}"><img src="{{ post.image.url }}"/></a>
     </div>
     {% empty %}
         No Posts yet.
