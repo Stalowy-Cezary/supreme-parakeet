@@ -13,7 +13,7 @@
     {% for post in object_list %}
     <div class="grid-item">
         <span class="image-title">{{ post.title }}</span>
-        <img src="{{ post.image.url }}"/>
+        <a href="{% url 'post-detail' post.id %}"><img src="{{ post.image.url }}"/></a>
         {% for comments in object_list %}
             <div class="comment-container">
                 

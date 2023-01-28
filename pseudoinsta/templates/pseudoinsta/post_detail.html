@@ -1,0 +1,27 @@
+{% extends "login/index.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{{ object.user }} <br>
+{{ object.title }}
+<img src="{{ post.image.url}}">
+{% for comment in comments %}
+
+  {% if object.pk == comment.post.pk %}
+
+  {{ comment.content }}
+
+ {% endif %}
+
+{% endfor %}
+
+<form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Komentarzt</legend>
+        {{ form }}
+    </fieldset>
+    <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Submit</button>
+    </div>
+</form>
+{% endblock %}
