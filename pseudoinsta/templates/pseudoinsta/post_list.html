@@ -9,10 +9,10 @@
     "columnWidth": 1
 }'>
     {% for post in object_list %}
-    <div class="grid-item">
-        <span class="image-title">{{ post.title }}</span>
-        <a href="{% url 'post-detail' post.id %}"><img src="{{ post.image.url }}"/></a>
-    </div>
+        <div class="grid-item">
+            <span class="image-title">{{ post.title }}</span>
+            <a href="{% url 'post-detail' post.id %}"><img src="{{ post.image.url }}"/></a>
+        </div>
     {% empty %}
         No Posts yet.
     {% endfor %}

@@ -13,9 +13,12 @@
     <img src="{{ post.image.url}}">
 
     <div class="comments-conteiner">
+        <h4>Komentarze</h4>
         {% for comment in comments %}
             {% if object.pk == comment.post.pk %}
-                {{ comment.content }}
+                <div class="coment">
+                    {{ comment.user }}: {{ comment.content }}
+                </div>
             {% endif %}
         {% endfor %}
     </div>
